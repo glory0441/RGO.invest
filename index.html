@@ -94,6 +94,10 @@ body::before{
   border: 1px solid rgba(255,255,255,0.12);
   position:relative;
   background:#000;              /* ✅ 흰 공백 방지 */
+  .heroWrap{
+  position:relative;
+}
+   
 }
 
 
@@ -202,6 +206,23 @@ body::before{
   </div>
 </body>
 </html>
+
+.heroWrap::before{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:120%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background: radial-gradient(circle,
+    rgba(255,140,0,0.7) 0%,
+    rgba(255,60,0,0.4) 20%,
+    transparent 60%);
+  filter: blur(80px);
+  z-index:-1;
+}
+
 
 
 
