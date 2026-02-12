@@ -1,83 +1,79 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>파일 다운로드</title>
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      text-align:center;
-      margin:0;
-      padding:0;
-      background:#ffffff;
-    }
-    .wrap{
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 0 16px;
-    }
-    h1{
-      margin-bottom: 24px;
-      font-size: 34px;
-    }
-  .thumb{
-  width: 100%;
-  max-width: 1100px;
-  height: auto;          /* 원본 비율 유지 */
-  object-fit: contain;   /* 절대 잘리지 않게 */
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-  display:block;
-  margin: 0 auto 22px;
-  background: #000;      /* 혹시 여백 생기면 검정으로 깔끔 */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파일 다운로드</title>
+
+<style>
+
+body{
+  font-family: Arial, sans-serif;
+  text-align:center;
+  margin:0;
+  background:#ffffff;
 }
-    }
-    .btn{
-      display:inline-block;
-      padding: 14px 26px;
-      border-radius: 12px;
-      background:#111;
-      color:#fff;
-      font-size: 18px;
-      font-weight:700;
-      text-decoration:none;
-      transition: transform .06s ease;
-    }
-    .btn:active{
-      transform: scale(0.98);
-    }
-    .sub{
-      margin-top: 14px;
-      font-size: 13px;
-      color:#666;
-      line-height:1.5;
-    }
-  </style>
+
+.wrap{
+  max-width:1200px;
+  margin:60px auto;
+}
+
+h1{
+  font-size:34px;
+  margin-bottom:30px;
+}
+
+/* ⭐ 이미지 대칭 & 꽉채움 핵심 */
+.thumb{
+  width:95%;
+  max-width:1100px;
+  aspect-ratio:16/9;       /* 화면 비율 고정 */
+  object-fit:cover;        /* 꽉 채우기 */
+  object-position:center;  /* 중앙 기준 */
+  border-radius:12px;
+  display:block;
+  margin:0 auto 25px;
+}
+
+.btn{
+  display:inline-block;
+  padding:16px 30px;
+  background:#111;
+  color:white;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.sub{
+  margin-top:15px;
+  font-size:13px;
+  color:#666;
+}
+
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <h1>파일 다운로드</h1>
 
-    <!-- 크게 보이는 이미지 -->
-    <img class="thumb" src="button.png" alt="다운로드 이미지">
+<div class="wrap">
 
-    <!-- 진짜 다운로드 버튼 -->
-    <a class="btn" href="download.exe" download>
-      다운로드 받기
-    </a>
+<h1>파일 다운로드</h1>
 
-    
-    <div class="sub">
-      ※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
-      ※ 브라우저가 exe 파일은 경고를 띄울 수 있어요(정상).
-    </div>
-  </div>
+<img class="thumb" src="button.png">
+
+<a class="btn" href="download.exe" download>
+다운로드 받기
+</a>
+
+<div class="sub">
+※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
+※ exe 파일은 브라우저 경고가 뜰 수 있습니다.
+</div>
+
+</div>
+
 </body>
 </html>
-
-
-
-
-
