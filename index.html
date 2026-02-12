@@ -21,15 +21,17 @@
       margin-bottom: 24px;
       font-size: 34px;
     }
-   .thumb{
-  width: 95vw;        /* 화면의 95%까지 */
-  max-width: 1100px;  /* 최대 1100px */
-  height: auto;
-  border-radius: 14px;
+  .thumb{
+  width: 100%;
+  max-width: 1100px;
+  height: auto;          /* 원본 비율 유지 */
+  object-fit: contain;   /* 절대 잘리지 않게 */
+  border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
   display:block;
   margin: 0 auto 22px;
-)
+  background: #000;      /* 혹시 여백 생기면 검정으로 깔끔 */
+}
     }
     .btn{
       display:inline-block;
@@ -74,6 +76,7 @@
   </div>
 </body>
 </html>
+
 
 
 
