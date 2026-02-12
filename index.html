@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html>
-<body style="text-align:center;margin-top:100px;">
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파일 다운로드</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      text-align:center;
+      margin:0;
+      padding:0;
+      background:#ffffff;
+    }
+    .wrap{
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 16px;
+    }
+    h1{
+      margin-bottom: 24px;
+      font-size: 34px;
+    }
+    .thumb{
+      width: 100%;
+      max-width: 520px;   /* 이미지 최대 크기 */
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      display:block;
+      margin: 0 auto 22px;
+    }
+    .btn{
+      display:inline-block;
+      padding: 14px 26px;
+      border-radius: 12px;
+      background:#111;
+      color:#fff;
+      font-size: 18px;
+      font-weight:700;
+      text-decoration:none;
+      transition: transform .06s ease;
+    }
+    .btn:active{
+      transform: scale(0.98);
+    }
+    .sub{
+      margin-top: 14px;
+      font-size: 13px;
+      color:#666;
+      line-height:1.5;
+    }
+  </style>
+</head>
 
-<a href="download.exe" download>
-<img src="button.png" width="200">
-</a>
+<body>
+  <div class="wrap">
+    <h1>파일 다운로드</h1>
 
+    <!-- 크게 보이는 이미지 -->
+    <img class="thumb" src="button.png" alt="다운로드 이미지">
+
+    <!-- 진짜 다운로드 버튼 -->
+    <a class="btn" href="download.exe" download>
+      다운로드 받기
+    </a>
+
+    <div class="sub">
+      ※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
+      ※ 브라우저가 exe 파일은 경고를 띄울 수 있어요(정상).
+    </div>
+  </div>
 </body>
 </html>
