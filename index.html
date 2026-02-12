@@ -107,17 +107,18 @@
       z-index:1;
     }
 
-  .heroWrap::after{
+.heroWrap::after{
   content:"";
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  height:12px;      /* 흰줄 두께에 맞춰 8~16px로 조절 */
-  background:#000;  /* 아래쪽을 검정으로 덮기 */
-  z-index:2;
+  height:18px;      /* 흰띠 두께에 따라 12~24로 조절 */
+  background:#000;  /* 아래 흰 띠를 검정으로 덮음 */
+  z-index:3;
   pointer-events:none;
 }
+
 
     
     .thumb{
@@ -198,5 +199,6 @@
   </div>
 </body>
 </html>
+
 
 
