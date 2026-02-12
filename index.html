@@ -21,19 +21,22 @@
     }
 
     /* 금빛 네온 글로우(고정) */
-   body::before{
+body::before{
   content:"";
   position:fixed;
-  inset:-260px;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255,170,70,0.75), transparent 52%),
-    radial-gradient(circle at 18% 82%, rgba(255,110,0,0.35), transparent 55%),
-    radial-gradient(circle at 85% 78%, rgba(255,140,0,0.30), transparent 55%);
-  filter: blur(85px);
+  width:900px;
+  height:900px;
+  background: radial-gradient(circle,
+    rgba(255,140,0,0.9) 0%,
+    rgba(255,80,0,0.6) 20%,
+    transparent 70%);
+  top:15%;
+  left:50%;
+  transform:translateX(-50%);
+  filter: blur(120px);
   z-index:-2;
-  pointer-events:none;
-  opacity: 1;
 }
+
 
 
 
@@ -199,6 +202,7 @@
   </div>
 </body>
 </html>
+
 
 
 
