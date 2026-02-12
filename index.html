@@ -1,170 +1,176 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>파일 다운로드</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파일 다운로드</title>
 
-<style>
+  <style>
+    * { box-sizing: border-box; }
 
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  text-align:center;
-  color:white;
-  background:#0b0b0b;
-  overflow-x:hidden;
-}
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      text-align:center;
+      color:#fff;
+      background:#0b0b0b;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
 
-/* ⭐ 네온 배경 */
-body::before{
-  content:"";
-  position:fixed;
-  width:900px;
-  height:900px;
-  background: radial-gradient(circle,
-    rgba(255,140,0,0.9) 0%,
-    rgba(255,60,0,0.6) 20%,
-    transparent 70%);
-  top:15%;
-  left:50%;
-  transform:translateX(-50%);
-  filter: blur(120px);
-  z-index:-2;
-}
+    /* 네온 배경 */
+    body::before{
+      content:"";
+      position:fixed;
+      width:900px;
+      height:900px;
+      background: radial-gradient(circle,
+        rgba(255,140,0,0.9) 0%,
+        rgba(255,60,0,0.6) 20%,
+        transparent 70%);
+      top:15%;
+      left:50%;
+      transform:translateX(-50%);
+      filter: blur(120px);
+      z-index:-2;
+      pointer-events:none;
+    }
 
-/* ⭐ 반짝이는 입자 효과 */
-body::after{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(rgba(255,180,80,0.2) 1px, transparent 1px);
-  background-size:80px 80px;
-  animation: moveParticles 20s linear infinite;
-  z-index:-1;
-}
+    /* 반짝이 입자 */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image: radial-gradient(rgba(255,180,80,0.18) 1px, transparent 1px);
+      background-size:80px 80px;
+      opacity:0.8;
+      animation: moveParticles 20s linear infinite;
+      z-index:-1;
+      pointer-events:none;
+    }
 
-@keyframes moveParticles{
-  from{ transform:translateY(0);}
-  to{ transform:translateY(-200px);}
-}
+    @keyframes moveParticles{
+      from{ transform:translateY(0); }
+      to  { transform:translateY(-200px); }
+    }
 
-.wrap{
-  max-width:1100px;
-  margin:80px auto;
-  padding:30px;
-}
+    .wrap{
+      max-width:1100px;
+      margin:80px auto;
+      padding:0 18px;
+    }
 
-/* ⭐ 유리 카드 */
-.card{
-  background: rgba(0,0,0,0.45);
-  border-radius:20px;
-  padding:30px;
-  backdrop-filter: blur(15px);
-}
+    /* 유리 카드 */
+    .card{
+      background: rgba(0,0,0,0.45);
+      border-radius:20px;
+      padding:30px;
+      border:1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+    }
 
-h1{
-  font-size:36px;
-  margin-bottom:25px;
-  text-shadow:0 0 12px rgba(255,140,0,0.6);
-}
+    h1{
+      font-size:36px;
+      margin: 0 0 22px;
+      text-shadow:0 0 12px rgba(255,140,0,0.6);
+    }
 
-/* ⭐ 이미지 */
-.heroWrap{
-  position:relative;
-  overflow:hidden;
-  border-radius:15px;
-  margin-bottom:25px;
-}
+    /* 이미지 프레임 */
+    .heroWrap{
+      position:relative;
+      overflow:hidden;
+      border-radius:15px;
+      margin: 0 auto 25px;
+      max-width: 980px;
+      background:#000;
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.55);
+    }
 
-/* 이미지 뒤 glow */
-.heroWrap::before{
-  content:"";
-  position:absolute;
-  width:120%;
-  height:120%;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background: radial-gradient(circle,
-    rgba(255,140,0,0.7) 0%,
-    rgba(255,60,0,0.4) 20%,
-    transparent 60%);
-  filter: blur(80px);
-  z-index:-1;
-}
+    /* 이미지 뒤 글로우 */
+    .heroWrap::before{
+      content:"";
+      position:absolute;
+      width:120%;
+      height:120%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background: radial-gradient(circle,
+        rgba(255,140,0,0.70) 0%,
+        rgba(255,60,0,0.40) 20%,
+        transparent 60%);
+      filter: blur(80px);
+      z-index:0;
+      pointer-events:none;
+    }
 
-.heroWrap::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:20px;
-  background:#000;
-  z-index:3;
-}
+    /* 이미지 아래 흰띠 숨김(이미지 자체 여백 가리기) */
+    .heroWrap::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:20px;
+      background:#000;
+      z-index:2;
+      pointer-events:none;
+    }
 
-.thumb{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  display:block;
-}
+    .thumb{
+      position:relative;
+      z-index:1;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
 
-/* ⭐ 버튼 */
-.btn{
-  display:inline-block;
-  padding:16px 32px;
-  background:#111;
-  color:white;
-  border-radius:14px;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 0 15px rgba(255,150,50,0.25);
-  transition:0.2s;
-}
+    /* 버튼 */
+    .btn{
+      display:inline-block;
+      padding:16px 32px;
+      background:#111;
+      color:#fff;
+      border-radius:14px;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:800;
+      box-shadow:0 0 15px rgba(255,150,50,0.25);
+      transition: transform .15s ease;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+    .btn:hover{ transform: translateY(-2px); }
+    .btn:active{ transform: scale(0.98); }
 
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-.sub{
-  margin-top:15px;
-  font-size:13px;
-  color:#aaa;
-}
-
-</style>
+    .sub{
+      margin-top:15px;
+      font-size:13px;
+      color:#aaa;
+      line-height:1.6;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="card">
+      <h1>파일 다운로드</h1>
 
-<div class="wrap">
+      <div class="heroWrap">
+        <img class="thumb" src="button.png" alt="다운로드 이미지">
+      </div>
 
-<div class="card">
+      <a class="btn" href="download.exe" download>⬇ 다운로드 받기</a>
 
-<h1>파일 다운로드</h1>
-
-<div class="heroWrap">
-<img class="thumb" src="button.png">
-</div>
-
-<a class="btn" href="download.exe" download>
-⬇ 다운로드 받기
-</a>
-
-<div class="sub">
-※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
-※ exe 파일은 브라우저 경고가 뜰 수 있습니다.
-</div>
-
-</div>
-
-</div>
-
+      <div class="sub">
+        ※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
+        ※ exe 파일은 브라우저 경고가 뜰 수 있습니다(정상).
+      </div>
+    </div>
+  </div>
 </body>
 </html>
