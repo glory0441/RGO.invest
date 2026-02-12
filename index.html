@@ -107,6 +107,19 @@
       z-index:1;
     }
 
+  .heroWrap::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:12px;      /* 흰줄 두께에 맞춰 8~16px로 조절 */
+  background:#000;  /* 아래쪽을 검정으로 덮기 */
+  z-index:2;
+  pointer-events:none;
+}
+
+    
     .thumb{
   width:100%;
   aspect-ratio: 16 / 9;
@@ -115,6 +128,8 @@
   display:block;
   vertical-align: middle;       /* ✅ 아래 흰줄 방지 */
   margin:0;                     /* ✅ 혹시 모를 여백 제거 */
+  .thumb{ transform: scale(1.02); }
+    
 }
 
 
@@ -183,4 +198,5 @@
   </div>
 </body>
 </html>
+
 
