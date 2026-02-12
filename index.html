@@ -6,116 +6,109 @@
   <title>파일 다운로드</title>
 
   <style>
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
       font-family: Arial, sans-serif;
       text-align:center;
       color:#fff;
-      background:#0b0b0b;
-      overflow-x:hidden;
       min-height:100vh;
+      background:#050505;
+      overflow-x:hidden;
     }
 
-    /* 네온 배경 */
+    /* ✅ 배경 네온 (확실히 보이게 강하게) */
     body::before{
       content:"";
       position:fixed;
-      width:900px;
-      height:900px;
-      background: radial-gradient(circle,
-        rgba(255,140,0,0.9) 0%,
-        rgba(255,60,0,0.6) 20%,
-        transparent 70%);
-      top:15%;
-      left:50%;
-      transform:translateX(-50%);
-      filter: blur(120px);
-      z-index:-2;
+      inset:-300px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,170,60,0.95), transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(255,90,0,0.55), transparent 55%),
+        radial-gradient(circle at 85% 80%, rgba(255,140,0,0.45), transparent 55%);
+      filter: blur(70px);
+      z-index:-3;
       pointer-events:none;
     }
 
-    /* 반짝이 입자 */
+    /* ✅ 입자 (더 촘촘 + 더 진하게) */
     body::after{
       content:"";
       position:fixed;
       inset:0;
-      background-image: radial-gradient(rgba(255,180,80,0.18) 1px, transparent 1px);
-      background-size:80px 80px;
-      opacity:0.8;
-      animation: moveParticles 20s linear infinite;
-      z-index:-1;
+      background-image:
+        radial-gradient(circle, rgba(255,190,110,0.28) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(255,190,110,0.18) 0 1px, transparent 2px);
+      background-size: 55px 55px, 95px 95px;
+      background-position: 0 0, 30px 50px;
+      opacity:0.95;
+      z-index:-2;
       pointer-events:none;
+      animation: dustMove 14s linear infinite;
     }
-
-    @keyframes moveParticles{
-      from{ transform:translateY(0); }
-      to  { transform:translateY(-200px); }
+    @keyframes dustMove{
+      from{ transform: translateY(0); }
+      to  { transform: translateY(-140px); }
     }
 
     .wrap{
-      max-width:1100px;
-      margin:80px auto;
-      padding:0 18px;
+      max-width: 1100px;
+      margin: 70px auto;
+      padding: 0 18px;
     }
 
-    /* 유리 카드 */
+    /* ✅ 카드가 너무 어두우면 배경이 안 보임 → 투명하게 + 테두리 */
     .card{
-      background: rgba(0,0,0,0.45);
-      border-radius:20px;
-      padding:30px;
-      border:1px solid rgba(255,255,255,0.10);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+      border-radius: 22px;
+      padding: 28px 22px 26px;
+      background: rgba(0,0,0,0.22); /* 🔥 투명하게 */
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.55);
     }
 
     h1{
-      font-size:36px;
-      margin: 0 0 22px;
-      text-shadow:0 0 12px rgba(255,140,0,0.6);
+      margin: 6px 0 18px;
+      font-size: 36px;
+      text-shadow: 0 0 18px rgba(255,160,60,0.65);
     }
 
     /* 이미지 프레임 */
     .heroWrap{
       position:relative;
       overflow:hidden;
-      border-radius:15px;
-      margin: 0 auto 25px;
+      border-radius: 18px;
+      margin: 18px auto 22px;
       max-width: 980px;
       background:#000;
-      border:1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 10px 35px rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.60);
     }
 
-    /* 이미지 뒤 글로우 */
+    /* ✅ 이미지 뒤 글로우(확실히 보이게) */
     .heroWrap::before{
       content:"";
       position:absolute;
-      width:120%;
-      height:120%;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      background: radial-gradient(circle,
-        rgba(255,140,0,0.70) 0%,
-        rgba(255,60,0,0.40) 20%,
-        transparent 60%);
-      filter: blur(80px);
+      inset:-40px;
+      background: radial-gradient(circle at 50% 65%,
+        rgba(255,150,60,0.95) 0%,
+        rgba(255,70,0,0.55) 25%,
+        transparent 62%);
+      filter: blur(55px);
       z-index:0;
       pointer-events:none;
+      opacity:1;
     }
 
-    /* 이미지 아래 흰띠 숨김(이미지 자체 여백 가리기) */
+    /* 흰띠 가리기(이미지 자체에 흰줄 있으면) */
     .heroWrap::after{
       content:"";
       position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
+      left:0; right:0; bottom:0;
       height:20px;
       background:#000;
-      z-index:2;
+      z-index:3;
       pointer-events:none;
     }
 
@@ -123,34 +116,42 @@
       position:relative;
       z-index:1;
       width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       object-position:center;
       display:block;
     }
 
-    /* 버튼 */
     .btn{
-      display:inline-block;
-      padding:16px 32px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 16px 34px;
+      border-radius: 14px;
       background:#111;
       color:#fff;
-      border-radius:14px;
       text-decoration:none;
-      font-size:18px;
-      font-weight:800;
-      box-shadow:0 0 15px rgba(255,150,50,0.25);
-      transition: transform .15s ease;
-      border:1px solid rgba(255,255,255,0.12);
+      font-size: 18px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow:
+        0 0 18px rgba(255,150,60,0.35),
+        0 14px 34px rgba(0,0,0,0.55);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .btn:hover{ transform: translateY(-2px); }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 26px rgba(255,150,60,0.55),
+        0 18px 44px rgba(0,0,0,0.60);
+    }
     .btn:active{ transform: scale(0.98); }
 
     .sub{
-      margin-top:15px;
-      font-size:13px;
-      color:#aaa;
-      line-height:1.6;
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -164,7 +165,9 @@
         <img class="thumb" src="button.png" alt="다운로드 이미지">
       </div>
 
-      <a class="btn" href="download.exe" download>⬇ 다운로드 받기</a>
+      <a class="btn" href="download.exe" download>
+        ⬇ 다운로드 받기
+      </a>
 
       <div class="sub">
         ※ 다운로드가 안 되면 새로고침(F5) 후 다시 눌러보세요.<br>
